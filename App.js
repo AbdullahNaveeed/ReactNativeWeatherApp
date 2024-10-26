@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet, Text, View } from "react-native";
+import RootStackNavigation from "./src/navigation/RootStackNavigation";
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  
+  return <RootStackNavigation />;
+  // return (
+  // <View className="body">
+  //return <Search onSearchChange={handleOnSearchChange} />;
+  // </View>
+  // );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  body: {
+    margin: 0,
+    fontFamily: "Roboto",
+    backgroundColor: "#d5d4d4",
   },
 });
