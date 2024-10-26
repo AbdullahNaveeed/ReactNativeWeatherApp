@@ -16,42 +16,58 @@ const Search = ({ onSearchChange }) => {
   const [results, setResults] = useState([]);
 
   const loadOptions = async (inputValue) => {
-    if (!inputValue) return;
+    if (!inputValue) {
+      setResults([]);
+      return;
+    }
     setLoading(true);
-    fetch(
-      `${GEO_API_URL}/cities?minPopulation=1000000&namePrefix=${inputValue}`,
-      geoApiOptions
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (!response || !response.data) {
-          console.error("Unexpected response structure:", response);
-          setResults([]);
-          return;
-        }
-        setResults(
-          response.data.map((city) => ({
-            value: `${city.latitude} ${city.longitude}`,
-            label: `${city.name}, ${city.countryCode}`,
-          }))
-        );
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+    try {
+      const response = await fetch(
+        `${GEO_API_URL}/cities?minPopulation=1000000&namePrefix=${inputValue}`,
+        geoApiOptions
+      );
+      const data = await response.json();
+      if (!data || !data.data) {
+        console.error("Unexpected response structure:", data);
+        setResults([]);
+        return;
+      }
+      setResults(
+        data.data.map((city) => ({
+          value: `${city.latitude} ${city.longitude}`,
+          label: `${city.name}, ${city.countryCode}`,
+        }))
+      );
+    } catch (error) {
+      console.log("Error fetching data:", error);
+      setResults([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleOnChange = (value) => {
     setSearch(value);
-    onSearchChange(value);
-    loadOptions(value); 
+    onSearchChange({label: value.label,value:value.value});
+    loadOptions(value);
+  };
+
+  const handleItemSelect = (item) => {
+    setSearch(item.label);
+    setResults([]);
+    onSearchChange({label: item.label,value:item.value});
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.resultItem}>
+    <TouchableOpacity
+      style={styles.resultItem}
+      onPress={() => handleItemSelect(item)}
+    >
       <Text>{item.label}</Text>
     </TouchableOpacity>
   );
-console.log(results);
+  // console.log({ "Results: ": results });
+  // console.log({ "Search: ": search });
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.main}>
@@ -92,7 +108,7 @@ export default Search;
 
 const styles = StyleSheet.create({
   main: {
-    
+    flex: 1,
     backgroundColor: "#d5d4d4",
   },
   container: {
@@ -109,6 +125,11 @@ const styles = StyleSheet.create({
   loadingText: {
     textAlign: "center",
     marginVertical: 10,
+  },
+  noResultsText: {
+    textAlign: "center",
+    marginVertical: 10,
+    color: "#888",
   },
   resultsList: {
     marginTop: 10,
