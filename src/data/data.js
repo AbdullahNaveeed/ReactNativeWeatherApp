@@ -18,3 +18,4 @@ export const weatherIcons = {
     "50d": require("../../assets/icons/01n.png"),
     "50n": require("../../assets/icons/01n.png"),
   };
+  export const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

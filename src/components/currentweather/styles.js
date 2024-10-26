@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
   temperature: {
     fontWeight: "600",
     fontSize: 70,
+    color: "white",
     letterSpacing: -5,
     marginVertical: 10,
   },

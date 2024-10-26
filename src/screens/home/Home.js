@@ -5,6 +5,7 @@ import Search from "../../components/search/search";
 import CurrentWeather from "../../components/currentweather/CurrentWeather";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WEATHER_API_KEY, WEATHER_API_URL } from "../../api";
+import Forecast from "../../components/forecast/forecast";
 
 const Home = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -31,13 +32,13 @@ const Home = () => {
       })
       .catch((err) => console.log(err));
   };
-  console.log("Hello Current Weather", currentWeather);
-  // console.log(forecast);
+  console.log("Hello Forecast", forecast);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Search onSearchChange={handleOnSearchChange} />
         {currentWeather && <CurrentWeather data={currentWeather} />}
+        {forecast && <Forecast data={forecast} />}
       </View>
     </SafeAreaView>
   );

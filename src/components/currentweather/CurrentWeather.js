@@ -34,20 +34,20 @@ const CurrentWeather = ({ data }) => {
           <View style={styles.parameterRow}>
             <Text style={styles.parameterLabel}>Feels like</Text>
             <Text style={styles.parameterValue}>
-              {tempConverter(data.main.feels_like)}
+              {`${tempConverter(data.main.feels_like)}°C`}
             </Text>
           </View>
           <View style={styles.parameterRow}>
             <Text style={styles.parameterLabel}>Wind</Text>
-            <Text style={styles.parameterValue}> {data.wind.speed}</Text>
+            <Text style={styles.parameterValue}> {`${data.wind.speed} m/s`}</Text>
           </View>
           <View style={styles.parameterRow}>
             <Text style={styles.parameterLabel}>Humidity</Text>
-            <Text style={styles.parameterValue}>{data.main.humidity}</Text>
+            <Text style={styles.parameterValue}>{`${data.main.humidity} %`}</Text>
           </View>
           <View style={styles.parameterRow}>
             <Text style={styles.parameterLabel}>Pressure</Text>
-            <Text style={styles.parameterValue}>{data.main.pressure}</Text>
+            <Text style={styles.parameterValue}>{`${data.main.pressure} hPa`}</Text>
           </View>
         </View>
       </View>
