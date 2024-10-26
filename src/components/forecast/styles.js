@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     margin: 5,
     alignItems: "center",
     flexDirection: "row",
-    padding: 10,
+    
   },
   iconSmall: {
     width: 40,
@@ -34,9 +34,19 @@ export const styles = StyleSheet.create({
     color: "#757575",
   },
   dailyDetailsGrid: {
-    padding: 10,
-    backgroundColor: "#ffffff",
+    shadowColor: "#000",
+    shadowOffset: { width: 10, height: -2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+    elevation: 20,
+    padding: 16,
+    backgroundColor: "#DCDCDC",
     borderRadius: 10,
+    marginBottom: 10,
+    marginTop:5,
+    marginHorizontal: 10,
+    
+
   },
   dailyDetailsGridItem: {
     flexDirection: "row",
@@ -44,10 +54,10 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
   },
   label: {
-    color: "#757575",
+    color: "#666666",
   },
   value: {
-    color: "#212121",
+    color: "#000000",
   },
   errorText: {
     textAlign: "center",

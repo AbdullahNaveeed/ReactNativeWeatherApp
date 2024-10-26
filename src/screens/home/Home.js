@@ -6,6 +6,7 @@ import CurrentWeather from "../../components/currentweather/CurrentWeather";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { WEATHER_API_KEY, WEATHER_API_URL } from "../../api";
 import Forecast from "../../components/forecast/forecast";
+import { ScrollView } from "react-native-web";
 
 const Home = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
